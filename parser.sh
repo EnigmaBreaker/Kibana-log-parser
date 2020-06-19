@@ -48,4 +48,4 @@ do
 		echo $line | jq --arg url $url --arg query [$query] '{timestamp : .["@timestamp"], url : $url, query : $query, method : .method, statusCode : .statusCode, resContentLength : .req.headers."content-length", responseTime : .res.responseTime, contentLength : .res.contentLength}'
 	fi
 
-done < <(tail -F $input --line=+$startLine)
+done < <(tail -F $input --line=+$startLine | grep response)
